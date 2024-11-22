@@ -15,9 +15,11 @@ void GetRequestUserFilterData(userFilter *req) {
     scanf(" %c", &condition); 
     if (condition == 'y') {
         printf("The price : ");
-        scanf("%d", &req->price);
+        scanf("%lf", &req->price);
         printf("Lower or higher or equal to (<,>,=) : ");
         scanf(" %c", &req->condition_price); 
+
+        printf("get request price : %f, comd : %c\n",req->price,req->condition_price);
     }else{
         req->condition_price = ' ';
         req->price = -1;

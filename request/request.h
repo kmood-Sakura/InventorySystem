@@ -2,8 +2,8 @@
 #define REQUEST_H
 
 #include "request_struct.h"
-#include <stdio.h>
-#include <string.h>
+#include "../handler/common_header/commonio.h"
+#include "../handler/common_header/commonstring.h"
 
 void GetRequestUserFilterData(userFilter *req);
 

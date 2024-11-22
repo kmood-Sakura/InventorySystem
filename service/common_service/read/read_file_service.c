@@ -1,8 +1,8 @@
-#include "handler.h"
+#include "read_file_service.h"
 
 #define MAX_LINE_LENGTH 1024
 
-// Function to count lines in file (excluding header)
+
 int countCSVLines(const char *filename) {
     char filepath[256];
     snprintf(filepath, sizeof(filepath), "data/%s", filename);
@@ -72,6 +72,7 @@ int parseCSVLine(char *line, Goods *item) {
     return (field == 5) ? 1 : 0;  // Return 1 if all fields were read
 }
 
+
 // Function to read CSV file into array of Goods
 Goods* readCSVfile(const char *filename, int *itemCount) {
     char filepath[256];
@@ -123,6 +124,7 @@ Goods* readCSVfile(const char *filename, int *itemCount) {
     return items;
 }
 
+
 // Function to print Goods for verification
 void printGoods(const Goods *item) {
     printf("ID: %d\n", item->id);
@@ -132,3 +134,4 @@ void printGoods(const Goods *item) {
     printf("Stock: %d\n", item->stock);
     printf("------------------------\n");
 }
+
