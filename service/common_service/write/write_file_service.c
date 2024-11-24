@@ -1,8 +1,4 @@
-#include "../../data/goods_struct.h"
-
-#include "../../handler/common_header/commonio.h"
-//#include "../../handler/common_header/commonlib.h"
-#include "../../handler/common_header/commonstring.h"
+#include "write_file_service.h"
 
 void writeCSVrows(const char *filename, const Goods *data, int count) {
     char filepath[256];
