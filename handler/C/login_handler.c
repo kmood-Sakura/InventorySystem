@@ -24,11 +24,20 @@ int Begin_Access(void){
 int Login(){
 
     //martin
-
+    
+    return 1;
 }
 
 int SignIn(){
 
     //martin
 
+    return 1;
+}
+
+int Access_Owner_Page(){
+
+    //martin
+
+    return 1;
 }
