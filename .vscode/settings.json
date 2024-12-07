@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "data_service.h": "c",
-        "request_struct.h": "c",
-        "commonstring.h": "c",
-        "goods_struct.h": "c",
-        "commonio.h": "c"
-    }
-}
