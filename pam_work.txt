@@ -1,2 +1,0 @@
-CMD : gcc search_data.c request/getRequest.c service/common_service/read/read_file_service.c service/search_data_service/search_data_service.c -o search_data
-CMD2 : ./search_data.exe
