@@ -9,13 +9,13 @@ void Owner_Page(void){
         printf("system command : ");
         scanf(" %c",&key);
         switch (key){
-            case 'O':
+            case 'O': Apply_Order_Page();
                 break;
-            case 'S':
+            case 'S': Search_Warehouse_Inventory();
                 break;
-            case '+':
+            case '+': Add_Page();
                 break;
-            case '-':
+            case '-': Minus_Page();
                 break;
             case 'E': exit(200);
             case 'A': //Access_Owner_Page();

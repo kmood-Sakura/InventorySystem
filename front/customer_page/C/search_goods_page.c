@@ -18,13 +18,6 @@ void Search_Goods_Page(void){
 
 }
 
-int showALLGOODS(GOODS* items, int itemCount){
-    for(int i=0;i<itemCount;i++){
-        printGOODS(&items[i]);
-    }
-    return 0;
-}
-
 //use this function to show all 
 void Search_Common_Page(void){
     int itemCount;
