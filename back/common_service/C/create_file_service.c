@@ -8,30 +8,38 @@ int createFile(const char* data_directory,const char *filename,const char* filet
     char *filepath = create_current_path(data_directory, filename, filetype);
     if(fileExists(filepath)){
         printf("file ('%s') already exist\n",filepath);
+        //free(filepath);
         return -1;
     }
     FILE *file = fopen(filepath, "w");
     if (file == NULL) {
         fprintf(stderr, "Error: Could not create file %s\n", filepath);
-        return 1;
+        //free(filepath);
+        return 0;
     }
+    //free(filepath);
+    return 1;
 }
 
 int createFilePath(const char* filepath){
     if(fileExists(filepath)){
         printf("file ('%s') already exist\n",filepath);
+        free(filepath);
         return -1;
     }
     FILE *file = fopen(filepath, "w");
     if (file == NULL) {
         fprintf(stderr, "Error: Could not create file %s\n", filepath);
-        return 1;
+        free(filepath);
+        return 0;
     }
+    free(filepath);
+    return 1;
 }
 
 // Function to create CSV file with custom headers
-int createCSVfile(const char *filename, const char *headers) {
-    char *filepath = create_current_path("back/database/", filename,"csv");
+int createCSVfile(const char* directory, const char *filename, const char *headers) {
+    char *filepath = create_current_path(directory, filename,"csv");
     
     if(fileExists(filepath)){
         printf("file ('%s') already exist\n",filepath);
