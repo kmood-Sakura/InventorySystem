@@ -86,7 +86,7 @@ GOODS* getGOODSCSVpath(const char* filepath, int* itemCount){
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%lf,%d", 
                items[*itemCount].id, 
                items[*itemCount].name, 
                items[*itemCount].description, 
@@ -138,7 +138,7 @@ GOODS* getGOODSCSV(const char *filename, int *itemCount) {
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%lf,%d", 
                items[*itemCount].id, 
                items[*itemCount].name, 
                items[*itemCount].description, 
@@ -154,7 +154,7 @@ GOODS* getGOODSCSV(const char *filename, int *itemCount) {
 
 // Function to print GOODS for verification
 void printGOODS(const GOODS *item) {
-    printf("ID: %d\n", item->id);
+    printf("ID: %s\n", item->id);
     printf("Name: %s\n", item->name);
     printf("Description: %s\n", item->description);
     printf("Price: %.2f\n", item->price);

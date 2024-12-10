@@ -14,7 +14,8 @@ void Order_Page(void){
     //confirm order
 }
 
-int ComfirmOrder(void){
+int ComfirmOrder(void) {
     //show all infomation 
     //request yes or no to confirm
+    return 0;
 }
