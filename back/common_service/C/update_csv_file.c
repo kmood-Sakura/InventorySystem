@@ -4,9 +4,9 @@
 
 #include "../update_file_service.h"
 
-int update_item_quantity(const char* filename, const char* item_id, int quantity_change) {
+int update_item_quantity(const char* directory, const char* filename, const char* item_id, int quantity_change) {
 
-    char *filepath = create_current_path("back/database/",filename,"csv");
+    char *filepath = create_current_path(directory,filename,"csv");
     FILE *file = fopen(filename, "r+");
     if (file == NULL) {
         printf("Error opening file.\n");
@@ -14,7 +14,7 @@ int update_item_quantity(const char* filename, const char* item_id, int quantity
     }
 
     char line[MAX_LINE_DATA_LEN];
-    char *temp_filepath = create_current_path("back/database/","temp","csv");
+    char *temp_filepath = create_allocate_path(directory,"temp","csv");
     FILE *temp = fopen(temp_filepath, "w");
     if (temp == NULL) {
         printf("Error creating temporary file.\n");
@@ -58,11 +58,13 @@ int update_item_quantity(const char* filename, const char* item_id, int quantity
     fclose(temp);
 
     if (updated) {
-        remove(filename);
-        rename(temp_filepath, filename);
+        remove(filepath);
+        rename(temp_filepath, filepath);
+        free(temp_filepath);
         return 1;  // Success
     } else {
         remove(temp_filepath);
+        free(temp_filepath);
         printf("Item with ID %s not found.\n", item_id);
         return 0;  // Failure
     }
