@@ -99,9 +99,10 @@ GOODS* getGOODSCSVpath(const char* filepath, int* itemCount){
     fclose(file);
     return items;
 }
-GOODS* getGOODSCSV(const char *filename, int *itemCount) {
 
-    char *filepath = create_current_path("back/database/", filename, "csv");
+GOODS* getGOODSCSV(const char* directory, const char *filename, int *itemCount) {
+
+    char *filepath = create_current_path(directory, filename, "csv");
     
     FILE *file = fopen(filepath, "r");
     if (file == NULL) {
@@ -138,7 +139,7 @@ GOODS* getGOODSCSV(const char *filename, int *itemCount) {
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%lf,%d", 
                items[*itemCount].id, 
                items[*itemCount].name, 
                items[*itemCount].description, 
@@ -154,10 +155,10 @@ GOODS* getGOODSCSV(const char *filename, int *itemCount) {
 
 // Function to print GOODS for verification
 void printGOODS(const GOODS *item) {
-    printf("ID: %d\n", item->id);
+    printf("ID: %s\n", item->id);
     printf("Name: %s\n", item->name);
     printf("Description: %s\n", item->description);
-    printf("Price: %.2f\n", item->price);
+    printf("Price: %.2lf\n", item->price);
     printf("quantity: %d\n", item->quantity);
     printf("------------------------\n");
 }
