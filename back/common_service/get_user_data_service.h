@@ -7,8 +7,6 @@
 int parseUSERCSVLine(char *line, USER *users);
 USER* getUSERCSV(const char *filename, int* usersCount);
 USER* getUSERCSVpath(const char* filepath, int *usersCount);
-
-int showALLUSER(USER* users, int userCount);
-int printUSER(const USER *users);
+void printUSER(const USER *users);
 
 #endif

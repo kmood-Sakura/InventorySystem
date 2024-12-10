@@ -155,15 +155,9 @@ USER* getUSERCSV(const char *filename, int *usersCount) {
     fclose(file);
     return users;
 }
-int showALLUSER(USER* users, int userCount){
-    for(int i=0;i<userCount;i++){
-        printUSER(&users[i]);
-    }
-    return 1;
-}
 
 // Function to print GOODS for verification
-void printUSER(const USER *user) {
+void printGOODS(const USER *user) {
     printf("ID: %d\n", user->id);
     printf("Name: %s\n", user->name);
     printf("Email: %s\n", user->email);

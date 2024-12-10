@@ -152,19 +152,12 @@ GOODS* getGOODSCSV(const char *filename, int *itemCount) {
     return items;
 }
 
-int showALLGOODS(GOODS* goods, int itemCount){
-    for(int i=0;i<itemCount;i++){
-        printGOODS(&goods[i]);
-    }
-    return 1;
-}
 // Function to print GOODS for verification
-int printGOODS(const GOODS *item) {
+void printGOODS(const GOODS *item) {
     printf("ID: %d\n", item->id);
     printf("Name: %s\n", item->name);
     printf("Description: %s\n", item->description);
     printf("Price: %.2f\n", item->price);
     printf("quantity: %d\n", item->quantity);
     printf("------------------------\n");
-    return 1;
 }
