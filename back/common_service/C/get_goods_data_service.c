@@ -162,3 +162,11 @@ void printGOODS(const GOODS *item) {
     printf("quantity: %d\n", item->quantity);
     printf("------------------------\n");
 }
+
+
+int showALLGOODS(GOODS* items, int itemCount){
+    for(int i=0;i<itemCount;i++){
+        printGOODS(&items[i]);
+    }
+    return 0;
+}

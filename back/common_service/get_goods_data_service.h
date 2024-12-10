@@ -8,5 +8,6 @@ int parseGOODSCSVLine(char *line, GOODS *item);
 GOODS* getGOODSCSV(const char* directory, const char *filename, int *itemCount);
 GOODS* getGOODSCSVpath(const char *filepath, int *itemCount);
 void printGOODS(const GOODS *item);
+int showALLGOODS(GOODS* items, int itemCount);
 
 #endif
