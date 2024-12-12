@@ -86,7 +86,7 @@ GOODS* getGOODSCSVpath(const char* filepath, int* itemCount){
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%lf,%d", 
                items[*itemCount].id, 
                items[*itemCount].name, 
                items[*itemCount].description, 

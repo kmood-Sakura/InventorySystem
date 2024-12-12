@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "../path_service.h"
 
@@ -43,7 +42,3 @@ char* create_current_directory(const char* current_working_directory,const char 
     return full_path;
 }
 
-void direct_to_path(const char* dir_path){
-    chdir(dir_path);
-    printf("you success fully direct to %s path\n",dir_path);
-}

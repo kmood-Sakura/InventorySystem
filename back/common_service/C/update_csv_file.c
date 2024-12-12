@@ -7,7 +7,7 @@
 int update_item_quantity(const char* directory, const char* filename, const char* item_id, int quantity_change) {
 
     char *filepath = create_current_path(directory,filename,"csv");
-    FILE *file = fopen(filename, "r+");
+    FILE *file = fopen(filepath, "r+");
     if (file == NULL) {
         printf("Error opening file.\n");
         return 0;

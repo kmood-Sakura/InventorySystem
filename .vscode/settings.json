@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "search_goods_page.h": "c",
+        "order_page.h": "c",
+        "update_file_service.h": "c",
+        "get_goods_data_service.h": "c",
+        "string.h": "c",
+        "stdio.h": "c"
+    }
+}
