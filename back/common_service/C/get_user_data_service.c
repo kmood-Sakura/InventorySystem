@@ -103,10 +103,9 @@ USER* getUSERCSVpath(const char* filepath, int *usersCount){
     return users;
 }
 
-USER* getUSERCSV(const char *filename, int *usersCount) {
+USER* getUSERCSV(const char* directory, const char *filename, int *usersCount) {
 
-    char *filepath = create_current_path("back/database/", filename, "csv");
-
+    char *filepath = create_current_path(directory, filename, "csv");
     FILE *file = fopen(filepath, "r");
     if (file == NULL) {
         fprintf(stderr, "Error opening file.\n");
@@ -157,11 +156,19 @@ USER* getUSERCSV(const char *filename, int *usersCount) {
 }
 
 // Function to print GOODS for verification
-void printGOODS(const USER *user) {
-    printf("ID: %d\n", user->id);
+void printUSER(const USER *user) {
+    printf("ID: %s\n", user->id);
     printf("Name: %s\n", user->name);
     printf("Email: %s\n", user->email);
-    printf("Phone: %.s\n", user->phone);
+    printf("Phone: %.10s\n", user->phone);
     //printf("password: %s\n", user->password);
     printf("------------------------\n");
+}
+
+
+int showALLUSERS(USER* users, int userCount){
+    for(int i=0;i<userCount;i++){
+        printUSER(&users[i]);
+    }
+    return 0;
 }

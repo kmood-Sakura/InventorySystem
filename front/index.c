@@ -1,12 +1,10 @@
 #include <stdio.h>
 
 #include "../handler/login_handler.h"
-#include "customer_page/customer_page.h"
-#include "owner_page/owner_page.h"
-
+#include "book_page/book_page.h"
 int main(){
-    if(Begin_Access()){
-        Customer_Page();
+    if(tempBegin_Access()){
+        Book_Page();
     }
     return 0;
 }

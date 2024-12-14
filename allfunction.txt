@@ -1,11 +1,7 @@
 gcc 
-front/index.c
-front/customer_page/C/customer_page.c 
-front/customer_page/C/order_page.c 
-front/customer_page/C/search_goods_page.c 
-front/owner_page/C/apply_order_page.c 
-front/owner_page/C/owner_page.c 
-front/owner_page/C/search_inventory_page.c 
+front/index.c 
+front/book_page/C/book_page.c 
+back/api-service/C/amz_algo.c 
 back/common_service/C/get_goods_data_service.c 
 back/common_service/C/path_service.c 
 handler/C/login_handler.c 
