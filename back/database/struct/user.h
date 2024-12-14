@@ -8,10 +8,10 @@
 #include "../define/password.h"
 
 #define HEADER_USERDATA "id,name,email,phone,password"
-#define FORMAT_USERDATA "%s,%s,%s,%10s,%s\n"
+#define FORMAT_USERDATA "%[^,],%[^,],%[^,],%[^,],%s\n"
 #define MAX_USER_DATA_LEN (MAX_ID_LEN + MAX_USER_NAME_LEN + MAX_EMAIL_LEN + MAX_PHONE_NUM_LEN + MAX_PASSWORD_LEN + 5)
 
-typedef struct{
+typedef struct {
     char id[MAX_ID_LEN];
     char name[MAX_USER_NAME_LEN];
     char email[MAX_EMAIL_LEN];

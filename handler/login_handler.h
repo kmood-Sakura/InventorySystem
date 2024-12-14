@@ -7,5 +7,6 @@ int tempBegin_Access();
 int Begin_Access();
 int SignIn();
 int SignUp();
+int Access_Owner_Page();
 
 #endif

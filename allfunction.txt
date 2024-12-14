@@ -9,4 +9,5 @@ front/owner_page/C/search_inventory_page.c
 back/common_service/C/get_goods_data_service.c 
 back/common_service/C/path_service.c 
 handler/C/login_handler.c 
+handler/C/access_owner_page.c 
 -o main_program
