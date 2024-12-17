@@ -1,4 +1,4 @@
-id,goodsid,userid,quantity
+id,goodsid,userid,price,quantity
 00001,00001,00001,10.1,1
 00002,00002,00002,10.2,1
 00003,00003,00003,10.3,1

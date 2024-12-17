@@ -1,7 +1,7 @@
 id,name,description,price,quantity
-00001,ob1,none1,10.1,1
-00002,ob2,none2,10.2,2
-00003,ob3,none3,10.3,3
+00001,ob1,none1,10.10,5
+00002,ob2,none2,10.20,5
+00003,ob3,none3,10.30,5
 00004,ob4,none4,10.4,4
 00005,ob5,none5,10.5,5
 00006,ob6,none6,10.6,6

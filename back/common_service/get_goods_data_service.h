@@ -11,4 +11,9 @@ GOODS* getGOODSCSVpath(const char *filepath, int *itemCount);
 int showALLGOODS(GOODS* goods, int itemCount);
 int printGOODS(const GOODS *item);
 
+int printByPriceDescending(GOODS* goods, int itemCount);
+int printByPriceAscending(GOODS* goods, int itemCount);
+int printByQuantityDescending(GOODS* goods, int itemCount);
+int printByQuantityAscending(GOODS* goods, int itemCount);
+
 #endif

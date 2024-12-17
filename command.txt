@@ -1,1 +1,1 @@
-gcc front/index.c front/owner_page/owner_page.c handler/access_handler/login_handler.c -o main_program
+gcc front/index.c front/owner_page/C/apply_order_page.c front/owner_page/C/owner_page.c front/owner_page/C/search_inventory_page.c front/owner_page/C/add_page.c front/owner_page/C/minus_page.c back/common_service/C/get_goods_data_service.c back/common_service/C/path_service.c back/api-service/C/pass_goods_warehouse.c handler/C/login_handler.c back/common_service/C/update_csv_file.c -o main_program

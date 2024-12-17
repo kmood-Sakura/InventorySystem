@@ -8,6 +8,7 @@ int parseUSERCSVLine(char *line, USER *users) {
     char *token;
     int field = 0;
     
+    //comment
     // Skip empty lines
     if (strlen(line) <= 1) return 0;
     
