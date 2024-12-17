@@ -89,7 +89,7 @@ USER* getUSERCSVpath(const char* filepath, int *usersCount){
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%[^,],%s", 
                users[*usersCount].id, 
                users[*usersCount].name, 
                users[*usersCount].email, 
@@ -141,7 +141,7 @@ USER* getUSERCSV(const char* directory, const char *filename, int *usersCount) {
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%[^,],%s", 
                users[*usersCount].id, 
                users[*usersCount].name, 
                users[*usersCount].email, 

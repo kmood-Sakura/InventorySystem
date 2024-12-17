@@ -2,14 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
-    char id[10];
-    char goodsid[10];
-    char userid[10];
-    float price;
-    int quantity;
-} Order;
-
+#include "../apply_order_page.h"
 
 void showAllData(const char* filepath);
 void sortOrders(Order orders[], int count, int sortOption);

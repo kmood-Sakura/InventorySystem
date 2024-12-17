@@ -12,7 +12,8 @@
 #define MAX_OWNER_DATA_LEN (MAX_WAREHOUSE_ID_LEN + MAX_TOKEN_LEN + MAX_NAME_LEN + 5)
 
 typedef struct {
-    char id[MAX_WAREHOUSE_ID_LEN];
+    char warehouseid[MAX_WAREHOUSE_ID_LEN];
+    char id[MAX_ID_LEN];
     char token[MAX_TOKEN_LEN];
     char name[MAX_NAME_LEN];
 }OWNER;

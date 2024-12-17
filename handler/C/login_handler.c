@@ -10,7 +10,6 @@
 int loadUsers(USER users[], int *userCount);
 int saveUser(USER *user);
 int checkDuplicateUser(const USER *user, const USER users[], int userCount);
-int Access_Owner_Page();
 
 int isValidPhoneNumber(const char* phone) {
     if (strlen(phone) != 10) return 0;
@@ -24,7 +23,7 @@ int tempBegin_Access(void) {
     return 1;
 }
 
-int Begin_Access(void) {
+int Begin_Access(AUTH *auth) {
     char key;
     printf("\n");
     printf("--------------------------------------------------------\n");
@@ -36,25 +35,25 @@ int Begin_Access(void) {
     printf("\n");
     printf("--------------------------------------------------------\n");
     printf("\n");
-        
+
     key = toupper(key);
 
     switch (key) {
-        case 'Y': return SignIn();
-        case 'N': return SignUp();
+        case 'Y': return SignIn(auth);
+        case 'N': return SignUp(auth);
         case 'E': exit(200);
         default: 
             printf("\n");
             printf("Invalid request (if you want to exit use key: 'e'). Please try again.\n");
-            return Begin_Access();
+            return Begin_Access(auth);
     }
 }
 
-int SignUp() {
+int SignUp(AUTH *auth) {
     USER* newUser = (USER*)malloc(sizeof(USER));
     if (!newUser) {
         printf("Memory allocation failed. Please try again.\n");
-        return Begin_Access();
+        return Begin_Access(auth);
     }
 
     USER users[MAX_USER_DATA_LEN];
@@ -63,7 +62,7 @@ int SignUp() {
     if (!loadUsers(users, &userCount)) {
         printf("Error loading user data. Please try again later.\n");
         free(newUser);
-        return Begin_Access();
+        return Begin_Access(auth);
     }
 
     while (getchar() != '\n'); 
@@ -110,7 +109,7 @@ int SignUp() {
         printf("--------------------------------------------------------\n");
         printf("\n");
         free(newUser);
-        return SignIn();
+        return SignIn(auth);
     }
 
     if (saveUser(newUser)) {
@@ -120,23 +119,23 @@ int SignUp() {
         printf("--------------------------------------------------------\n");
         printf("\n");
         free(newUser);
-        return SignIn();
+        return SignIn(auth);
     }
     
     printf("\n");
     printf("Error saving the account. Please try again later.\n");
     free(newUser);
-    return Begin_Access();
+    return Begin_Access(auth);
 }
 
-int SignIn() {
+int SignIn(AUTH *auth) {
     char email[MAX_EMAIL_LEN], password[MAX_PASSWORD_LEN];
     USER users[MAX_USER_DATA_LEN];
     int userCount = 0;
 
     if (!loadUsers(users, &userCount)) {
         printf("No accounts exist. Please sign up first.\n");
-        return Begin_Access();
+        return Begin_Access(auth);
     }
 
     printf("Enter your Email: ");
@@ -144,25 +143,18 @@ int SignIn() {
 
     printf("Enter your Password: ");
     scanf("%s", password);
-
-    for (int i = 0; i < userCount; i++) {
-        if (strcmp(users[i].email, email) == 0 && strcmp(users[i].password, password) == 0) {
-            printf("\n");
-            printf("--------------------------------------------------------\n");
-            printf("\n");
-            printf("Welcome, %s!\n", users[i].name);
-            printf("\n");
-            return 1;
-        }
+    if(identify_user_login(email,password)){
+        auth->customer = 1;
+        printf("Sign in Success\n");
+        return 1;
     }
 
     printf("\n");
-    printf("Invalid email or password. Try again.\n");
+    printf("Error : Email not exist\n");
     printf("\n");
     printf("--------------------------------------------------------\n");
     printf("\n");
-    return SignIn();
-
+    return SignIn(auth);
 }
 
 // Load users from the file

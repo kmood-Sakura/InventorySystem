@@ -45,6 +45,7 @@ int update_item_quantity(const char* directory, const char* filename, const char
                 fclose(file);
                 fclose(temp);
                 remove(temp_filepath);
+                free(temp_filepath);
                 return 0;
             }
             fprintf(temp, "%s,%s,%s,%.2lf,%d\n", id, name, description, price, new_quantity);
@@ -56,7 +57,7 @@ int update_item_quantity(const char* directory, const char* filename, const char
 
     fclose(file);
     fclose(temp);
-
+    
     if (updated) {
         remove(filepath);
         rename(temp_filepath, filepath);

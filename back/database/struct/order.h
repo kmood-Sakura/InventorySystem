@@ -7,8 +7,8 @@
 
 typedef struct{
     char id[MAX_ID_LEN];
-    char goodsID[MAX_ID_LEN];
-    char userID[MAX_ID_LEN];
+    char goodsid[MAX_ID_LEN];
+    char userid[MAX_ID_LEN];
     double price;
     int quantity;
 }Order;

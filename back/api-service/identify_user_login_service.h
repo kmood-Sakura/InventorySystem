@@ -1,6 +1,9 @@
 #ifndef IDENTIFY_USER_LOGIN_H
 #define IDENTIFY_USER_LOGIN_H
 
-int identify_user_login(loginRequest *req);
+#include "../../request/get_request_access.h"
+#include "../common_service/get_user_data_service.h"
+
+int identify_user_login(const char* email, const char *password);
 
 #endif

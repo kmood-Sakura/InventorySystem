@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include "../owner_page.h"
 
 // void Owner_Page(void){
@@ -29,7 +29,15 @@
 
 //new
 
-void Owner_Page(void) {
+void Owner_Page(AUTH *auth) {
+    //printf("owner id : %s\n",auth->ownerid);
+    if (!auth->owner) { // Check if owner ID is not set
+        if (!Access_Owner_Page(auth)) { // Attempt to authorize
+            printf("Authorization failed. Returning to Customer Page.\n");
+            Customer_Page(auth);
+            return; // Exit if authorization fails
+        }
+    }
     printf("Welcome to the Owner Management System.\n");
     printf("Here are the available commands:\n");
     printf("  O: Apply an order. Navigate to the Order Page.\n");
@@ -37,7 +45,7 @@ void Owner_Page(void) {
     printf("  +: Add new items to the inventory.\n");
     printf("  -: Remove items from the inventory.\n");
     printf("  E: Exit the system.\n");
-    printf("  A: Access advanced owner settings (placeholder).\n");
+    printf("  B: Go back to customer page.\n");
     printf("Enter your command below:\n");
 
     while (1) {
@@ -70,9 +78,9 @@ void Owner_Page(void) {
                 printf("Exiting the system. Goodbye!\n");
                 exit(200);
 
-            case 'A':
+            case 'B':
                 printf("Advanced owner settings are not yet implemented.\n");
-                // Access_Owner_Page();
+                Customer_Page(auth);
                 break;
 
             default:

@@ -11,9 +11,13 @@ front/owner_page/C/search_inventory_page.c
 front/owner_page/C/add_page.c
 front/owner_page/C/minus_page.c 
 
+back/common_service/C/get_owner_data_service.c 
+back/common_service/C/get_user_data_service.c 
 back/common_service/C/get_goods_data_service.c 
 back/common_service/C/path_service.c 
-back/common_service/C/update_csv_file.c
+back/common_service/C/update_csv_file.c 
+
+back/api_service/C/identify_user_login_service.c 
 back/api-service/C/coupon_service.c 
 back/api-service/C/pass_goods_warehouse.c 
 
