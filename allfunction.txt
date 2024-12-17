@@ -6,6 +6,6 @@ front/customer_page/C/search_goods_page.c
 back/common_service/C/get_goods_data_service.c 
 back/common_service/C/path_service.c 
 back/common_service/C/update_csv_file.c
-back/api-service/C/coupon.c
+back/api-service/C/coupon_service.c
 handler/C/login_handler.c 
 -o main_program

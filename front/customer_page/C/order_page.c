@@ -5,7 +5,21 @@
 
 #define MAX_PRODUCTS 100
 
-int ConfirmOrder(int quantity, const char* goodsName);
+int ConfirmOrder(int quan, const char* goodsName) {
+    printf("[DEBUG] Inside ConfirmOrder - Quantity: %d\n", quan); // Add this line
+    char confirmation;
+    printf("You are about to order %d %s(s). Do you confirm this order? (Y/N): ", quan, goodsName);
+    while (1) {
+        scanf(" %c", &confirmation); // The space before %c is to skip any leftover newline characters
+        if (confirmation == 'Y' || confirmation == 'y') {
+            return 1;  // Confirmed
+        } else if (confirmation == 'N' || confirmation == 'n') {
+            return 0;  // Canceled
+        } else {
+            printf("Invalid input. Please enter Y or N: ");
+        }
+    }
+}
 
 void Order_Page(void) {
     printf("customer_Order\n");
@@ -19,6 +33,8 @@ void Order_Page(void) {
     }
 
     double grandTotal = 0.0; // Variable to store the total price of all products ordered
+    char availableCoupons[10][100]; // Store available coupon codes
+    int couponCount = 0; // Store count of available coupons
 
     while (1) {
         char goodsName[100];
@@ -26,7 +42,7 @@ void Order_Page(void) {
 
         // Prompt user for the product name
         printf("Enter Goods name: ");
-        scanf("%s", goodsName);
+        scanf("%99s", goodsName);
 
         // Search for the product in the inventory
         GOODS* foundProduct = NULL;
@@ -50,21 +66,28 @@ void Order_Page(void) {
 
             double totalPrice = foundProduct->price * quantity;
             printf("Total price for %d %s(s): %.2lf baht\n", quantity, foundProduct->name, totalPrice);
+            printf("quantity: %d\n",quantity);
+            // Add available coupons to the list
+            FILE *file = fopen("back/user/1/coupon.csv", "r");
+            if (file) {
+                char line[100];
+                while (fgets(line, sizeof(line), file)) {
+                    char code[10];
+                    int percent, amount;
+                    char status[10];
+                    sscanf(line, "%[^,],%d,%d,%s", code, &percent, &amount, status);
 
-            // Prompt for coupon code
-            char couponCode[10];
-            printf("Enter coupon code (or press Enter to skip): ");
-            while (getchar() != '\n'); // Clear leftover newline from previous input
-            fgets(couponCode, sizeof(couponCode), stdin);
-            couponCode[strcspn(couponCode, "\n")] = '\0'; // Remove newline character
-
-            // Apply discount and update coupon CSV if valid
-            totalPrice = apply_coupon_discount_csv("back/user/1/coupon.csv", couponCode, totalPrice);
-            printf("Total price after discount: %.2lf baht\n", totalPrice);
-
-            grandTotal += totalPrice; // Add to grand total
+                    if (strcmp(status, "active") == 0 && totalPrice >= percent) {
+                        printf("Coupon available: %s - %d%% off\n", code, percent);
+                        strcpy(availableCoupons[couponCount], code);
+                        couponCount++;
+                    }
+                }
+                fclose(file);
+            }
 
             // Confirm the order
+            printf("quantity: %d\n",quantity);
             if (ConfirmOrder(quantity, goodsName)) {
                 printf("Order confirmed for %d %s(s) for %.2f baht\n", quantity, goodsName, totalPrice);
 
@@ -92,26 +115,26 @@ void Order_Page(void) {
             } else if (more == 'N' || more == 'n') {
                 printf("Final total price for all products: %.2lf baht\n", grandTotal);
                 printf("Thank you for your order!\n");
+
+                if (couponCount > 0) {
+                    printf("Available coupons based on your total price:\n");
+                    for (int i = 0; i < couponCount; i++) {
+                        printf("%d. Coupon: %s\n", i + 1, availableCoupons[i]);
+                    }
+
+                    // Choose coupon to apply
+                    int choice;
+                    printf("Choose a coupon to apply (1-%d): ", couponCount);
+                    scanf("%d", &choice);
+                    if (choice > 0 && choice <= couponCount) {
+                        double finalPrice = apply_coupon_discount_csv("back/user/1/coupon.csv", availableCoupons[choice - 1], grandTotal);
+                        printf("Total price after coupon discount: %.2lf baht\n", finalPrice);
+                    }
+                }
                 return; // Exit the ordering process
             } else {
                 printf("Invalid input. Please enter Y or N: ");
             }
-        }
-    }
-}
-
-// Confirm order (using your provided function)
-int ConfirmOrder(int quantity, const char* goodsName) {
-    char confirmation;
-    printf("Confirm order for %d %s(s)? (Y/N): ", quantity, goodsName);
-    while (1) {
-        scanf(" %c", &confirmation);
-        if (confirmation == 'Y' || confirmation == 'y') {
-            return 1; // Order confirmed
-        } else if (confirmation == 'N' || confirmation == 'n') {
-            return 0; // Order canceled
-        } else {
-            printf("Invalid input. Please enter Y or N: ");
         }
     }
 }
