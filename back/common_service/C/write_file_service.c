@@ -35,7 +35,7 @@ void writeCSVrows(const char* data_directory, const char *filename, const GOODS 
         }
         
         // Write the data in CSV format
-        fprintf(file, "%d,%s,%s,%.2f,%d\n",
+        fprintf(file, "%d,%s,%s,%.2lf,%d\n",
                 data[i].id,
                 name_escaped,
                 desc_escaped,

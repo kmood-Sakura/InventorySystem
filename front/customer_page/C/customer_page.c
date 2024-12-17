@@ -16,7 +16,10 @@ void Customer_Page(void){
             case 'S': Search_Goods_Page();
                 break;
             case 'E': exit(1);
-            case 'A': //Access_Owner_Page();
+            case 'A': 
+                if(Access_Owner_Page()){
+                    return Owner_Page();
+                }
                 break;
             default:
                 printf("Invalid Key Command. Please Enter Again\n");

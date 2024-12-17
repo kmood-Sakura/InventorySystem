@@ -86,7 +86,7 @@ GOODS* getGOODSCSVpath(const char* filepath, int* itemCount){
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%lf,%d", 
                items[*itemCount].id, 
                items[*itemCount].name, 
                items[*itemCount].description, 
@@ -99,9 +99,10 @@ GOODS* getGOODSCSVpath(const char* filepath, int* itemCount){
     fclose(file);
     return items;
 }
-GOODS* getGOODSCSV(const char *filename, int *itemCount) {
 
-    char *filepath = create_current_path("back/database/", filename, "csv");
+GOODS* getGOODSCSV(const char* directory, const char *filename, int *itemCount) {
+
+    char *filepath = create_current_path(directory, filename, "csv");
     
     FILE *file = fopen(filepath, "r");
     if (file == NULL) {
@@ -138,7 +139,7 @@ GOODS* getGOODSCSV(const char *filename, int *itemCount) {
         }
 
         line[strcspn(line, "\n")] = 0;  // Remove newline
-        sscanf(line, "%[^,],%[^,],%[^,],%f,%d", 
+        sscanf(line, "%[^,],%[^,],%[^,],%lf,%d", 
                items[*itemCount].id, 
                items[*itemCount].name, 
                items[*itemCount].description, 
@@ -154,10 +155,70 @@ GOODS* getGOODSCSV(const char *filename, int *itemCount) {
 
 // Function to print GOODS for verification
 void printGOODS(const GOODS *item) {
-    printf("ID: %d\n", item->id);
+    printf("ID: %s\n", item->id);
     printf("Name: %s\n", item->name);
     printf("Description: %s\n", item->description);
-    printf("Price: %.2f\n", item->price);
+    printf("Price: %.2lf\n", item->price);
     printf("quantity: %d\n", item->quantity);
     printf("------------------------\n");
+}
+
+int showALLGOODS(GOODS* items, int itemCount){
+    for(int i=0;i<itemCount;i++){
+        printGOODS(&items[i]);
+    }
+    return 0;
+}
+
+int compareByPriceDescending(const void* a, const void* b) {
+    const GOODS* itemA = (const GOODS*)a;
+    const GOODS* itemB = (const GOODS*)b;
+    if (itemB->price > itemA->price) return 1;
+    if (itemB->price < itemA->price) return -1;
+    return 0;
+}
+
+int compareByPriceAscending(const void* a, const void* b) {
+    const GOODS* itemA = (const GOODS*)a;
+    const GOODS* itemB = (const GOODS*)b;
+    if (itemA->price > itemB->price) return 1;
+    if (itemA->price < itemB->price) return -1;
+    return 0;
+}
+
+int compareByQuantityDescending(const void* a, const void* b) {
+    const GOODS* itemA = (const GOODS*)a;
+    const GOODS* itemB = (const GOODS*)b;
+    return itemB->quantity - itemA->quantity;
+}
+
+int compareByQuantityAscending(const void* a, const void* b) {
+    const GOODS* itemA = (const GOODS*)a;
+    const GOODS* itemB = (const GOODS*)b;
+    return itemA->quantity - itemB->quantity;
+}
+
+// Functions to sort and print
+int printByPriceDescending(GOODS* goods, int itemCount) {
+    qsort(goods, itemCount, sizeof(GOODS), compareByPriceDescending);
+    printf("Goods sorted by price (high to low):\n");
+    return showALLGOODS(goods, itemCount);
+}
+
+int printByPriceAscending(GOODS* goods, int itemCount) {
+    qsort(goods, itemCount, sizeof(GOODS), compareByPriceAscending);
+    printf("Goods sorted by price (low to high):\n");
+    return showALLGOODS(goods, itemCount);
+}
+
+int printByQuantityDescending(GOODS* goods, int itemCount) {
+    qsort(goods, itemCount, sizeof(GOODS), compareByQuantityDescending);
+    printf("Goods sorted by quantity (high to low):\n");
+    return showALLGOODS(goods, itemCount);
+}
+
+int printByQuantityAscending(GOODS* goods, int itemCount) {
+    qsort(goods, itemCount, sizeof(GOODS), compareByQuantityAscending);
+    printf("Goods sorted by quantity (low to high):\n");
+    return showALLGOODS(goods, itemCount);
 }

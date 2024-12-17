@@ -3,6 +3,8 @@
 
 #include "apply_order_page.h"
 #include "search_inventory_page.h"
+#include "add_page.h"
+#include "minus_page.h"
 
 void Owner_Page(void);
 

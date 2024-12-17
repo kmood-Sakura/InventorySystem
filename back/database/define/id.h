@@ -2,6 +2,6 @@
 #define ID_H
 
 
-#define MAX_ID_LEN 10
+#define MAX_ID_LEN 11
 
 #endif /* ID_H */

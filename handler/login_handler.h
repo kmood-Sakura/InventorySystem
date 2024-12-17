@@ -1,10 +1,12 @@
 #ifndef LOGIN_HANDLER_H
 #define LOGIN_HANDLER_H
 
-int tempBegin_Access();
+#include "../back/database/struct/user.h"
 
+int tempBegin_Access();
 int Begin_Access();
-int Login();
 int SignIn();
+int SignUp();
+int Access_Owner_Page();
 
 #endif

@@ -43,6 +43,12 @@ char* create_current_directory(const char* current_working_directory,const char 
     return full_path;
 }
 
+char* create_full_path(const char* directory, const char* directTo, const char* filename, const char* filetype) {
+    static char full_path[MAX_MY_PATH];
+    snprintf(full_path, MAX_MY_PATH, "%s%s%s.%s",directory, directTo, filename,filetype);
+    return full_path;
+}
+
 void direct_to_path(const char* dir_path){
     chdir(dir_path);
     printf("you success fully direct to %s path\n",dir_path);

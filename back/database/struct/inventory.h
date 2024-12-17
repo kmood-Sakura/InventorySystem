@@ -7,6 +7,7 @@
 
 #define HEADER "id,name,description,price,quantity"
 #define MAX_GOODS_DATA_LEN (MAX_ID_LEN + MAX_GOODS_NAME_LEN + MAX_DESC_LEN + 17 + 8 + 5)
+#define MAX_GOODS 100
 
 typedef struct{
     char id[MAX_ID_LEN];
