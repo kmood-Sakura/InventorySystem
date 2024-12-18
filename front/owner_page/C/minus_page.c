@@ -2,7 +2,7 @@
 
 #include "../minus_page.h"
 
-void Minus_Page(void){
+void Minus_Page(AUTH *auth){
 
     char goodsID[MAX_ID_LEN],idwarehouse[MAX_ID_LEN];
     

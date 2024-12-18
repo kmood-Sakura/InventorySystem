@@ -2,7 +2,7 @@
 #define MINUS_PAGE_H
 
 #include "../../back/api-service/pass_goods_warehouse.h"
-
-void Minus_Page(void);
+#include "../../back/database/struct/auth.h"
+void Minus_Page(AUTH *auth);
 
 #endif

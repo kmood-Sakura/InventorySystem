@@ -56,22 +56,22 @@ void Owner_Page(AUTH *auth) {
         switch (key) {
             case 'O':
                 printf("Navigating to the Order Page...\n");
-                Apply_Order_Page();
+                Apply_Order_Page(auth);
                 break;
 
             case 'S':
                 printf("Searching the warehouse inventory...\n");
-                Search_Warehouse_Inventory();
+                Search_Warehouse_Inventory(auth);
                 break;
 
             case '+':
                 printf("Adding new items to the inventory...\n");
-                Add_Page();
+                Add_Page(auth);
                 break;
 
             case '-':
                 printf("Removing items from the inventory...\n");
-                Minus_Page();
+                Minus_Page(auth);
                 break;
 
             case 'E':

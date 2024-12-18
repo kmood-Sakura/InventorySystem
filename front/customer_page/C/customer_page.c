@@ -15,9 +15,9 @@ void Customer_Page(AUTH *auth){
         printf("system command : ");
         scanf(" %c",&key);
         switch (key){
-            case 'O': Order_Page();
+            case 'O': Order_Page(auth);
                 break;
-            case 'S': Search_Goods_Page();
+            case 'S': Search_Goods_Page(auth);
                 break;
             case 'E': 
                 printf("Exiting the system. Goodbye!\n");

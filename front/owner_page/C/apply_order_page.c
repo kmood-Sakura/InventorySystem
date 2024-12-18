@@ -12,8 +12,8 @@ int compareQuantityHighLow(const void* a, const void* b);
 int compareQuantityLowHigh(const void* a, const void* b);
 void displayOrders(Order orders[], int count);
 
-void Apply_Order_Page(void) {
-    char* filepath = "back/warehouse/1/order.csv";
+void Apply_Order_Page(AUTH *auth) {
+    char* filepath = create_full_path("back/warehouse/",auth->warehouseid,"/order","csv");
     int choice;
 
     while (1) {  // menu

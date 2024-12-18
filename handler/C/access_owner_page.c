@@ -27,9 +27,11 @@ int Access_Owner_Page(AUTH *auth) {
     }
 
     char enteredToken[MAX_TOKEN_LEN];
-    while (1) {
+    int valid = 0;
+    do{
         printf("Enter your Token: ");
-        if (fgets(enteredToken, sizeof(enteredToken), stdin) == NULL) {
+        scanf(" %s",enteredToken);
+        if (strlen(enteredToken) == 0) {
             printf("Error reading input. Please try again.\n");
             continue;
         }
@@ -41,13 +43,13 @@ int Access_Owner_Page(AUTH *auth) {
             continue;
         }
 
-        int valid = 0;
         for(int i = 0; i < ownerCount; i++) {
             if (strcmp(enteredToken, info[i].token) == 0) {
                 printf("--------------------------------------------------------\n");
                 printf("\n");
                 printf("Access granted! Welcome, Owner.\n");
                 valid = 1;
+                strcpy(auth->warehouseid,"main");
                 auth->owner = 1;
                 free(info);  // Free allocated memory
                 return 1;
@@ -59,7 +61,7 @@ int Access_Owner_Page(AUTH *auth) {
         printf("\n");
         printf("--------------------------------------------------------\n");
         printf("\n");
-    }
+    }while(valid == 0);
 
     free(info);  // Free allocated memory if loop is somehow exited
     return 0;

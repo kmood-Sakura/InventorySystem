@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "../search_inventory_page.h"
 
-void Search_Warehouse_Inventory(void) {
-    char* filepath = create_current_path("back/warehouse/1/", "inventory", "csv");
+void Search_Warehouse_Inventory(AUTH *auth) {
+    char* filepath = create_full_path("back/warehouse/",auth->warehouseid, "/inventory", "csv");
 
     int itemCount; 
     GOODS* goods = getGOODSCSVpath(filepath, &itemCount);

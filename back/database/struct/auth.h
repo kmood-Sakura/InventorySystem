@@ -7,9 +7,9 @@ typedef struct
     int customer;
     int owner;
     // char userid[MAX_ID_LEN];
-    // char user_warehouse[MAX_ID_LEN];
+    char user_warehouseID[MAX_ID_LEN];
     // char ownerid[MAX_ID_LEN];
-    // char warehouseid[MAX_ID_LEN];
+    char warehouseid[MAX_ID_LEN];
 }AUTH;
 
 

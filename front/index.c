@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../handler/login_handler.h"
 #include "customer_page/customer_page.h"
 #include "owner_page/owner_page.h"
@@ -10,7 +11,7 @@ int main(){
         fprintf(stderr, "Memory allocation failed\n");
         return 1; // Exit with error code
     }
-    auth->customer = 0; auth->owner = 0;
+    auth->customer = 0; auth->owner = 0;strcpy(auth->user_warehouseID,"1");
     Customer_Page(auth);
     free(auth);
     return 0;

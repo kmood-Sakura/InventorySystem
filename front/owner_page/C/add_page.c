@@ -4,11 +4,11 @@
 
 
 
-void Add_Page(void){
+void Add_Page(AUTH *auth){
     char goodsID[MAX_ID_LEN],idwarehouse[MAX_ID_LEN];
     char warehouse_name[MAX_ID_LEN];
     char csv_filename[MAX_ID_LEN];
-    const char* csvFilePath = "back/warehouse/1/transfer.csv";
+    //const char* csvFilePath = "back/warehouse/1/transfer.csv";
     int  quantity;
     int  mode;
         const char* destination_warehouse = "warehouse_2"; 
@@ -29,13 +29,15 @@ switch (mode) {
                             printf("Please enter the quantity :");
                             scanf("%d",&quantity);
                     //use this function
-                            if(addGOODSToWarehouse(idwarehouse,"main","inventory",goodsID,quantity)){
+                            if(addGOODSToWarehouse(idwarehouse,auth->warehouseid,"inventory",goodsID,quantity)){
                             printf("Goods transfer successfully\n");
                             }
                             break;
                 case 2:
+                        printf("Please enter the warehouse ID :");
+                        scanf("%s",idwarehouse);
 
-                        if (addGoodsToWarehouseFromFile(csvFilePath)) {
+                        if (addGoodsToWarehouseFromFile(idwarehouse,auth->warehouseid)) {
                         printf("All items were successfully transferred to the warehouse.\n");
                 }  
                 break;

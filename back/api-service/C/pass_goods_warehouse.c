@@ -70,15 +70,14 @@ int removeGOODSFromWarehouseUsingFile(const char* csv_filepath) {
     return 1;
 }
 
-int addGoodsToWarehouseFromFile(const char* csvFilePath) {
-    const char* warehouse_name = "1";
+int addGoodsToWarehouseFromFile(const char* subwarehouseID, const char *main_warehouseID) {
     //const char* warehouse_name;           // Destination warehouse.
-    const char* main_warehouse_name = "main";   // Source warehouse.
-    const char* filename = "inventory";              // Inventory file.
-    printf("path add file : %s\n",csvFilePath);
-    FILE *file = fopen(csvFilePath, "r");
+    const char* filepath = create_full_path("back/warehouse/",subwarehouseID,"/transfer","csv");
+            // Inventory file.
+    printf("path add file : %s\n",filepath);
+    FILE *file = fopen(filepath, "r");
     if (!file) {
-        printf("Error: Unable to open CSV file: %s\n", csvFilePath);
+        printf("Error: Unable to open CSV file: %s\n", filepath);
         return 0;
     }
 
@@ -93,7 +92,7 @@ int addGoodsToWarehouseFromFile(const char* csvFilePath) {
         // Parse the line into goodsID and quantity.
         if (sscanf(line, "%[^,],%d", goodsID, &quantity) == 2) {
             // Call addGOODSToWarehouse for each item.
-            if (!addGOODSToWarehouse(warehouse_name, main_warehouse_name, filename, goodsID, quantity)) {
+            if (!addGOODSToWarehouse(subwarehouseID, main_warehouseID, "inventory", goodsID, quantity)) {
                 printf("Error: Failed to process goodsID: %s\n", goodsID);
                 success = 0; // Mark failure, but continue processing remaining lines.
             }
