@@ -9,7 +9,7 @@ int identify_user_login(const char* email, const char *password){
     int userCount;
     USER* users = getUSERCSV("back/database/","user",&userCount);
     for(int i=0; i<userCount ;i++){
-        printf("mail : %s\n",users[i].email);
+        //printf("mail : %s\n",users[i].email);
         if (strcmp(users[i].email, email) == 0){
             if(strcmp(users[i].password, password) == 0){
                 printf("\n");

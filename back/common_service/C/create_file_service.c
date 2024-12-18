@@ -33,7 +33,6 @@ int createFilePath(const char* filepath){
         free(filepath);
         return 0;
     }
-    free(filepath);
     return 1;
 }
 

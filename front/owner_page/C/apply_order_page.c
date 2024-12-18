@@ -4,6 +4,15 @@
 
 #include "../apply_order_page.h"
 
+typedef struct {
+    char id[10];
+    char goodsid[10];
+    char userid[10];
+    double price;
+    int quantity;
+} Order;
+
+
 void showAllData(const char* filepath);
 void sortOrders(Order orders[], int count, int sortOption);
 int comparePriceHighLow(const void* a, const void* b);
@@ -13,7 +22,7 @@ int compareQuantityLowHigh(const void* a, const void* b);
 void displayOrders(Order orders[], int count);
 
 void Apply_Order_Page(AUTH *auth) {
-    char* filepath = create_full_path("back/warehouse/",auth->warehouseid,"/order","csv");
+    char* filepath = "back/warehouse/1/order.csv";
     int choice;
 
     while (1) {  // menu
@@ -46,7 +55,7 @@ void Apply_Order_Page(AUTH *auth) {
 
             // Read and store 
             while (fgets(line, sizeof(line), file)) {
-                if (sscanf(line, "%9[^,],%9[^,],%9[^,],%f,%d",
+                if (sscanf(line, "%9[^,],%9[^,],%9[^,],%lf,%d",
                            orders[count].id,
                            orders[count].goodsid,
                            orders[count].userid,

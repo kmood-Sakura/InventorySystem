@@ -35,7 +35,7 @@ int Access_Owner_Page(AUTH *auth) {
             printf("Error reading input. Please try again.\n");
             continue;
         }
-        enteredToken[strcspn(enteredToken, "\n")] = 0;  
+        enteredToken[strcspn(enteredToken, "\n")] = 0;
         printf("\n");
         
         if (strlen(enteredToken) == 0) {

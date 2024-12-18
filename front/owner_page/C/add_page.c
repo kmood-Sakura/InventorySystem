@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 #include "../add_page.h"
 
 
@@ -16,6 +16,7 @@ void Add_Page(AUTH *auth){
                 printf("\nChoose a sorting option:\n");
                 printf("1. Add manually\n");
                 printf("2. Add using .csv file\n");
+                printf("3.Using Amazon Algorithm\n");
                 scanf("%d", &mode);
 
 switch (mode) {
@@ -38,9 +39,14 @@ switch (mode) {
                         scanf("%s",idwarehouse);
 
                         if (addGoodsToWarehouseFromFile(idwarehouse,auth->warehouseid)) {
-                        printf("All items were successfully transferred to the warehouse.\n");
-                }  
-                break;
+                                printf("All items were successfully transferred to the warehouse.\n");
+                        }  
+                        break;
+                case 3:
+                        if(strcmp(auth->warehouseid,"main") == 0){
+                                Amazon_Algo("main");
+                        }
+                        break;
 
                 default:
                         printf("Invalid choice.\n");

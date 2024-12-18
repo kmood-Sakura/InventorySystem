@@ -17,6 +17,7 @@ back/common_service/C/get_goods_data_service.c
 back/common_service/C/path_service.c 
 back/common_service/C/update_csv_file.c 
 
+back/api_service/C/amazon_algo.c
 back/api_service/C/identify_user_login_service.c 
 back/api-service/C/coupon_service.c 
 back/api-service/C/pass_goods_warehouse.c 

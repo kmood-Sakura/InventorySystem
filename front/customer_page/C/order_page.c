@@ -172,12 +172,15 @@ void update_coupon_csv(const char *filename, const char *usedCoupon) {
 // Main order page function
 void Order_Page(AUTH *auth) {
     int itemCount;
+    char warehouse_path[MAX_MY_PATH];
+    snprintf(warehouse_path, MAX_MY_PATH, "%s%s%s.%s","back/warehouse/", "1", "/inventory","csv");
     char inventory_path[MAX_MY_PATH];
     snprintf(inventory_path, MAX_MY_PATH, "%s%s%s.%s","back/user/", "1", "/inventory","csv");
     char coupon_path[MAX_MY_PATH];
     snprintf(inventory_path, MAX_MY_PATH, "%s%s%s.%s","back/user/", "1", "/coupon","csv");
 
-    GOODS *products = getGOODSCSVpath(inventory_path, &itemCount);
+    printf("path : %s\n",warehouse_path);
+    GOODS *products = getGOODSCSVpath(warehouse_path, &itemCount);
     if (products == NULL) {
         printf("Error loading products from inventory.\n");
         return;

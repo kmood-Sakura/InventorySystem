@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdlib.h": "c",
-        "customer_page.h": "c"
+        "customer_page.h": "c",
+        "add_page.h": "c"
     }
 }
