@@ -170,17 +170,10 @@ void update_coupon_csv(const char *filename, const char *usedCoupon) {
 }
 
 // Main order page function
-void Order_Page(AUTH *auth) {
-    int itemCount;
-    char warehouse_path[MAX_MY_PATH];
-    snprintf(warehouse_path, MAX_MY_PATH, "%s%s%s.%s","back/warehouse/", "1", "/inventory","csv");
-    char inventory_path[MAX_MY_PATH];
-    snprintf(inventory_path, MAX_MY_PATH, "%s%s%s.%s","back/user/", "1", "/inventory","csv");
-    char coupon_path[MAX_MY_PATH];
-    snprintf(inventory_path, MAX_MY_PATH, "%s%s%s.%s","back/user/", "1", "/coupon","csv");
+void Order_Page(AUTH * auth) {
 
-    printf("path : %s\n",warehouse_path);
-    GOODS *products = getGOODSCSVpath(warehouse_path, &itemCount);
+    int itemCount;
+    GOODS *products = getGOODSCSVpath("back/user/1/inventory.csv", &itemCount);
     if (products == NULL) {
         printf("Error loading products from inventory.\n");
         return;
@@ -211,12 +204,12 @@ void Order_Page(AUTH *auth) {
         scanf("%d", &choice);
 
         if (choice > 0 && choice <= couponCount) {
-            grandTotal = apply_coupon_discount_csv(coupon_path, availableCoupons[choice - 1], grandTotal);
-            update_coupon_csv(coupon_path, availableCoupons[choice - 1]);
+            grandTotal = apply_coupon_discount_csv("back/user/1/coupon.csv", availableCoupons[choice - 1], grandTotal);
+            update_coupon_csv("back/user/1/coupon.csv", availableCoupons[choice - 1]);
             printf("Total price after discount: %.2lf baht\n", grandTotal);
         }
     }
 
-    update_inventory_csv(inventory_path, products, itemCount);
+    update_inventory_csv("back/user/1/inventory.csv", products, itemCount);
     printf("Thank you for your order!\n");
 }

@@ -106,15 +106,7 @@ int Amazon_Algo(const char* id) {
             printf("Failed to create updated stock file for warehouse %s\n", warehouse->id);
         }
     }
-    char mainP[] = "back/warehouse/main/inventory.csv";
-    char tempMain[] = "back/warehouse/main/temper.csv";
-    FILE *mainF = fopen(tempMain,"w");
-    if(mainF){
-        fprintf(mainF,"%s\n",HEADER);
-        remove(mainP);
-        rename(tempMain,mainP);
-        return 0;
-    }
+    
     free(orderdata);
     return 1;
 }
