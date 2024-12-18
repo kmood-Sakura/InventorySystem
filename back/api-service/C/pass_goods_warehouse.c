@@ -8,7 +8,7 @@ int addGOODSToWarehouse(const char* warehouse_name,const char* main_warehouse_na
     char *maindir = create_allocate_dir("back/warehouse/",main_warehouse_name);
     if(!update_item_quantity(maindir,filename,goodsID,-quantity)){
         printf("Error : not enough item in inventory\n");
-
+        
         free(maindir);  
         
         return 0;
@@ -24,6 +24,7 @@ int addGOODSToWarehouse(const char* warehouse_name,const char* main_warehouse_na
         free(destinationdir);
         free(maindir);
 
+    COMMON_log(goodsID,"add to inventory",maindir,quantity);
     return 1;
 }
 
@@ -35,6 +36,7 @@ int removeGOODSFromWarehouse(const char* warehouse_name,const char* filename, co
         free(maindir);
         return 0;
     }
+    COMMON_log(goodsID,"add to inventory",maindir,quantity);
     free(maindir);
     return 1;
 }

@@ -4,6 +4,8 @@
 #include "../back/database/struct/user.h"
 #include "../back/database/struct/auth.h"
 #include "../back/api-service/identify_user_login_service.h"
+#include "../back/common_service/log_service.h"
+
 int tempBegin_Access();
 int Begin_Access(AUTH *auth);
 int SignIn(AUTH *auth);

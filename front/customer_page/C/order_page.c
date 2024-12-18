@@ -124,7 +124,7 @@ void update_inventory_csv(const char *filename, GOODS *products, int itemCount) 
                 products[i].id, products[i].name, products[i].description,
                 products[i].price, products[i].quantity);
     }
-
+    GOODS_log(products,"update",filename,itemCount);
     fclose(file);
 }
 
@@ -148,7 +148,6 @@ void update_coupon_csv(const char *filename, const char *usedCoupon) {
         int percent, amount;
 
         sscanf(line, "%[^,],%d,%d,%[^,],%s", code, &percent, &amount, status, expiryDate);
-
         if (strcmp(code, usedCoupon) == 0) {
             amount--; // Decrement amount
             if (amount <= 0) {

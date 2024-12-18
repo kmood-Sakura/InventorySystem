@@ -113,6 +113,7 @@ int SignUp(AUTH *auth) {
     }
 
     if (saveUser(newUser)) {
+        USER_log(newUser,"POST",USER_FILE,1);
         printf("\n");
         printf("Account created successfully! You can now sign in.\n");
         printf("\n");
